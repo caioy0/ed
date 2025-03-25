@@ -1,0 +1,30 @@
+Alocacao estatica de memoria 
+Definida em tempo de compilacao
+x
+Alocacao Dinamica de memoria
+defeinida em tempo de execucao
+
+Formatacao de numeros:
+
+formatos %6d : ______
+ex: 123 ___123
+2 _____2
+1234567 1234567 --ele vai colocar o 7 mesmo saindo do espaco
+
+%7.3f: ____.___
+ex: 1234.5 1234.500
+2.0037 2.004 --arredonda
+1533 1553.000
+
+RAM e CPU --> Na ULA vem primeiro o operador 
+e nos registradores vem as variaveis depois.
+
+float: 4B = 32bits
+24 bits mantissa 
+8bits expoente
+3.75x10^3
+mantissa == 3.75
+
+int: 4B = 32bits
+32 bits mantissa
+-2^31 ---- +2^31-1
