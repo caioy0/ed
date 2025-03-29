@@ -8,6 +8,7 @@ void preenche_vetor(int[], int);
 
 int main (){
     int n;
+    int *v;
     printf("insira valor: ");
     scanf("%d", &n);
     while(n>0){
@@ -17,7 +18,7 @@ int main (){
         long int ini = time(0);
         bubble_sort(v,n);
         exibe_vetor(v,n,"vetor ordenado");
-        printf("\ntempo de ordenacao: %ld\n", fim-ini);
+        printf("\ntempo de ordenacao: %ld\n", ini);
         free(v);
         printf("\nEscolha o novo tamanho, 0 encerra");
         scanf("%d",&n);
@@ -34,18 +35,21 @@ int main (){
     return 0;
 }
 
-void preenche_vetor(int [],int ){
-
+void preenche_vetor(int v[],int n){
+    for (int i=0; i<n; i++)
+    v[i] = rand();
 }
 
-void exibe_vetor(int v [], int n, char *){
-
+void exibe_vetor(int v[], int n, char *c){
+    for (int i = 0; i < n; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
 }
 
-void bubble_sort (int []v,int n){
+void bubble_sort (int v[],int n){
     for (int i=1;i<n;i++)
         for(int j=0;j<n-i;j++)
-            int n;
             if (v[j]> v[j+1]){
                 int aux = v[1];
                 v[i+1] = aux;
