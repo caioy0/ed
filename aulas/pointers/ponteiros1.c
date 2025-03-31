@@ -13,7 +13,7 @@ int main(){
 	int **k;
 	int *j;
 	int b = 10;
-	k = &j'
+	k = &j;
 	j = &b;
 	
 	*k = &a;
