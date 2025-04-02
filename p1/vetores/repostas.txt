@@ -1,0 +1,17 @@
+Funcoes
+1: Vai dar erro f1(b),
+mas na f1 ele vai somar a com a entao fica 4. ele vai printar 4 e b
+
+2: 
+
+3:
+
+4:
+
+5:
+
+6:
+
+7: a main chama a funcao f1 que chama f2, porem f2 chama f1. 
+Problema na logica de recursividade.
+
