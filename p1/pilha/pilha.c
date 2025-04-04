@@ -41,15 +41,17 @@ void exibe_pilha (t_pilha *p){
 
 void inverter_pilha (t_pilha *p){ 
     t_pilha *invertida; // Porque tem uma *?
+    // invertida é um ponteiro para uma pilha. Ou seja, 
+    // ela vai apontar para uma struct t_pilha que está alocada dinamicamente
     invertida = (t_pilha *) malloc(sizeof(t_pilha));
     constroi_pilha (p -> capacidade, invertida);
     int aux;
     while(pop(p,&aux)){
         push(aux, invertida);
     }
-    printf("p->dados antes: %p\n", p->dados);
-    printf("Invertida->dados: %p\n", invertida->dados);
-    exibe_pilha(invertida);
     p->dados = invertida -> dados;
     p->topo = invertida->topo;
+    printf("p->dados antes: %d\n", (void *) p -> dados);
+    printf("Invertida->dados: %d\n", (void *) invertida->dados);
+    exibe_pilha(invertida);
 }

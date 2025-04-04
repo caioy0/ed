@@ -2,14 +2,14 @@
 
 int main (){
     t_pilha pilha; // Inicia "variavel pilha"
-    constroi_pilha(10, &pilha); // E tem que construir a pilha?
-                        // Capacidade e t_pilha * wtffffff
+    constroi_pilha(10, &pilha); // Ta chumbado o tamanho da pilha hahaha
+                        // t_pilha *p e &pilha apontam na memoria.
     exibe_pilha(&pilha); // &?
     push(10, &pilha); 
     exibe_pilha(&pilha);
     int ch = 1;
     do{
-        printf("Escolha:1-Inserir dado na pilha\n2-Remover(pop)\n");
+        printf("Escolha:\n1-Inserir dado na pilha\n2-Remover(pop)\n");
         printf("3-Mostrar pilha\n4-Inverter Pilha\n0-Sair\nInput: ");
         scanf("%d", &ch);
         printf("\n");
@@ -25,17 +25,24 @@ int main (){
             int aux, elementos;
             printf("Quantos elementos quer remover?: ");
             scanf("%d", &elementos);
-            if (pop(&pilha, &aux)){
+            if (elementos > 1){
+                for (int i=0; i < elementos; i++){
+                    pop(&pilha,&aux);
+                }
                 printf("%d foi desempilhado\n", aux);
             }else{
-                printf("pilha vazia, nao foi possivle desempilhar\n");
+                if (pop(&pilha, &aux)){
+                    printf("%d foi desempilhado\n", aux);
+                }else{
+                    printf("pilha vazia, nao foi possivle desempilhar\n");
+                }
             }
         }break;
         case 3:{
             exibe_pilha(&pilha);
         }break;
         case 4:{
-            //inverter_pilha(&pilha);
+            inverter_pilha(&pilha);
         }break;
 
         case 0:{
