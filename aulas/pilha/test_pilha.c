@@ -18,9 +18,8 @@ int main(){
 
     int aux;
     pop (&pilha, &aux);
-    printf("%d foi desempilhado", aux);
     if (pop(&pilha, &aux)){
-
+        printf("%d foi desempilhado", aux);
     }else{
         printf("pilha vazia, nao foi possivle desempilhar");
     }

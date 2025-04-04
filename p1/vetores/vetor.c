@@ -49,11 +49,38 @@ int main(int argc, char **argv) {
 #include <stdio.h>
 #include <math.h>
 
+typedef struct {
+    float x, y;
+}ponto;
+
+typedef struct {
+    ponto c;
+    float raio;
+}circulo;
+
+typedef struct {
+    int numerador;
+    int denominador;
+} fracao;
+
+float distancia(ponto p1, ponto p2){
+    return sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
+}
+
+void bubble_sort (int v[],int n){
+    for (int i=1;i<n;i++)
+        for(int j=0;j<n-i;j++)
+            if (v[j]> v[j+1]){
+                int aux = v[1];
+                v[i+1] = aux;
+            }
+}
+
 int main() {
     int chose = 1;
     do {
         printf("Escolha o exercicio!\n");
-        printf("Vetores: 1-7\n0-sair\nInput: ");
+        printf("Vetores: 1-7 \nStruct:8-9\n0-sair\nInput: ");
         scanf("%d", &chose);
         // melhor usar string?
         // getc("");
@@ -197,6 +224,7 @@ int main() {
                 for (int i = 0; i < 10; i++) {
                     printf("%d ", numeros[i]);
                 }
+                printf("\n");
             }break;
             
             case 7:{
@@ -219,38 +247,67 @@ int main() {
                 for (int i = 0; i < 8; i++) {
                     printf("%d ", v[i]);
                 }
-
+                printf("\n");
             }break;
 
-            case 8:{
+            case 8:{ // questao struct
                 ponto p1, p2;
                 circulo c;
                 
-                // Entrada dos pontos
+                // B:
                 printf("Digite as coordenadas do primeiro ponto (x y): ");
                 scanf("%f %f", &p1.x, &p1.y);
-                
                 printf("Digite as coordenadas do segundo ponto (x y): ");
                 scanf("%f %f", &p2.x, &p2.y);
+                float distancia2 = distancia(p1, p2);
+                printf("\nDistancia entre os pontos: %.2f\n", distancia2);
                 
-                // Calcula e exibe a distância entre os dois pontos
-                float distancia = calcular_distancia(p1, p2);
-                printf("\nDistancia entre os pontos: %.2f\n", distancia);
-                
-                // Entrada do círculo
-                printf("\nDigite as coordenadas do ponto central do círculo (x y): ");
-                scanf("%f %f", &c.ponto_central.x, &c.ponto_central.y);
-                
+                // C:
                 printf("Digite o raio do círculo: ");
                 scanf("%f", &c.raio);
-                
-                // Verifica se p1 está dentro do círculo
-                if (ponto_no_circulo(c, p1)) {
+                printf("Digite o ponto central: ");
+                scanf("%f", &c.ponto_central);
+                printf("\nPontos do circulo \nRaio: %.2f \nPonto central : %.2f\n", c.raio, c.ponto_central);
+                float area = 3.14*(c.raio*c.raio);
+                if (p1.x || p1.y == area) {
                     printf("\nO primeiro ponto pertence ao círculo.\n");
-                } else {
+                }else {
                     printf("\nO primeiro ponto NAO pertence ao círculo.\n");
                 }
+                // Ponto 2
+                if (p2.x == area|| p2.y == area){
+                    printf("\nO segundo ponto pertence ao círculo.\n");
+                }else {
+                    printf("\nO primeiro ponto NAO pertence ao círculo.\n");
+                }
+                printf("\n");
             }break;
+
+            case 9: {
+                fracao f,f2;
+                printf("Numerador: ");
+                scanf("%d", &f.numerador);
+                printf("Denominador: ");
+                scanf("%d", &f.denominador);
+                printf("Fracao: %d/%d\n", f.numerador, f.denominador);
+                printf("---------------------------\n");
+                printf("Numerador: ");
+                scanf("%d", &f2.numerador);
+                printf("Denominador: ");
+                scanf("%d", &f2.denominador);
+                printf("Fracao: %d/%d\n", f2.numerador, f2.denominador);
+                printf("---------------------------\n");
+                float f1r, f2r;
+                f1r = (float) f.numerador/f.denominador; // Duvidas, es igual (int *)?
+                f2r = (float) f2.numerador/f2.denominador;
+                if (f2r > f1r) printf("A fracao 2 es maior que a 1\n");
+                if (f1r > f2r) printf("A fracao 1 es maior que a 2\n");
+                if (f1r == f2r) printf("A fracao 1 es igual que a 2\n");
+
+                float fm = f1r*f2r;
+                printf("A multiplicacao da fracao: %.2f\n",fm);
+                printf("\n");
+            } break;
             
             case 0:
                 chose = 0;
@@ -263,30 +320,4 @@ int main() {
     
     return 0;
     printf("\nend\n");
-}
-
-typedef struct {
-    float x, y;
-}ponto;
-
-typedef struct {
-    float raio, ponto_central;
-}circulo;
-
-void distancia(ponto p1, ponto p2){
-    return sqrt((p1.x-p2.x)*(p1.y-p2.y));
-}
-
-int ponto_no_circulo(circulo c, ponto p) {
-    float distancia = calcular_distancia(c.ponto_central, p);
-    return distancia <= c.raio;  // Porque ele aponta pra tras?
-}
-
-void bubble_sort (int v[],int n){
-    for (int i=1;i<n;i++)
-        for(int j=0;j<n-i;j++)
-            if (v[j]> v[j+1]){
-                int aux = v[1];
-                v[i+1] = aux;
-            }
 }
