@@ -267,7 +267,7 @@ int main() {
                 scanf("%f", &c.raio);
                 printf("Digite o ponto central: ");
                 scanf("%f", &c.ponto_central);
-                printf("\nPontos do circulo \nRaio: %.2f \nPonto central : %.2f\n", c.raio, c.ponto_central);
+                printf("\nPontos do circulo \nRaio: %.2f \nPonto central : %.2f\n", c.raio, c.x, c.y);
                 float area = 3.14*(c.raio*c.raio);
                 if (p1.x || p1.y == area) {
                     printf("\nO primeiro ponto pertence ao círculo.\n");

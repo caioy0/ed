@@ -11,7 +11,7 @@ int pop (t_pilha *p, int *removido){
 
 int push(int i, t_pilha *p){
     if (pilha_cheia(p)) return 0;
-    p -> dados[p->topo++] = i; // 
+    p -> dados[p->topo++] = i; // IGUAL A I???? WTFFFFF
     return 1;
 }
 
@@ -40,16 +40,18 @@ void exibe_pilha (t_pilha *p){
  }
 
 void inverter_pilha (t_pilha *p){ 
-    t_pilha *invertida; // Porque tem uma *?
+    t_pilha *invertida; // Porque tem uma *?, Aqui criamos uma instancia de pilha
     // invertida é um ponteiro para uma pilha. Ou seja, 
     // ela vai apontar para uma struct t_pilha que está alocada dinamicamente
-    invertida = (t_pilha *) malloc(sizeof(t_pilha));
-    constroi_pilha (p -> capacidade, invertida);
+    invertida = (t_pilha *) malloc(sizeof(t_pilha)); // Alocacao dinamica de 
+    // uma pilha 
+    constroi_pilha (p -> capacidade, invertida); // Toda pilha tem q ser construida
     int aux;
     while(pop(p,&aux)){
         push(aux, invertida);
     }
-    p->dados = invertida -> dados;
+    p->dados = invertida -> dados; // a struct antiga aponta para dados que eh
+    // igual a invertida dados
     p->topo = invertida->topo;
     printf("p->dados antes: %d\n", (void *) p -> dados);
     printf("Invertida->dados: %d\n", (void *) invertida->dados);
