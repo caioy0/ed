@@ -44,7 +44,29 @@ int main (){
         case 4:{
             inverter_pilha(&pilha);
         }break;
-
+        case 5:{
+            int par[10], impar[10];
+            int p = (int *) malloc (sizeof(int));
+            int contpar = 0, contimp = 0;
+            
+            printf("Digite 10 numeros inteiros:\n");
+            for (int i=p->topo-1; i < 10; i++) {
+                 // !
+                if (p->dados[i] % 2 == 0) {
+                    par[contpar++] = par[i]; 
+                } else {
+                    impar[contimp++] = impar[i];
+                }
+            }
+            printf("\nNumeros pares: ");
+            for (int i = 0; i < contpar; i++) {
+                printf("%d ", par[i]);
+            }
+            printf("\nNumeros impares: ");
+            for (int i = 0; i < contimp; i++) {
+                printf("%d ", impar[i]);
+            }
+        }break;
         case 0:{
             ch = 0;
         }break;
