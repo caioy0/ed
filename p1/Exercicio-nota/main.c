@@ -1,56 +1,59 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h> 
-
-typedef struct{
-    char placa[8];
-    int manobras;
-} Carro;
+#include "pilha.h"
+#include <string.h>
 
 int main(){
-    Carro estacionamento[10];
-    int topo = 0; // Contador de carros 
-    char operacao; // '0' para entrada, '1' para saída
-    char placa[8]; // Placa do carro copiada da struct
+    t_pilha estacionamento;
+    t_pilha aux;
+    Carro carro, carro_removido; // carro_removido == carro saindo | carro == carro entrando
+    char operacao;
+    char placa_input[8];
+
+    constroi_pilha(10, &estacionamento);
+    constroi_pilha(10, &aux);
+
     printf("Placa do carro como string\n");
-    while (1)  {
-        printf("Input para entrada ou saída (ex: 0(entrada) ABC1234(placa) -> 1(saida) ABC1234(placa)):\n");
-        if (scanf(" %c %7s", &operacao, placa) != 2) { // INPUT
+    while (1) {
+        printf("Input (ex: 0 ABC1234 para entrada, 1 ABC1234 para saída):\n");
+        if (scanf(" %c %7s", &operacao, placa_input) != 2) {
             printf("Entrada inválida. Encerrando programa.\n");
             break;
         }
-        if (operacao == '0') { // ENTRADA -> cadastra a placa do carro
-            if (topo >= 10) { // limite == 10 carros
-                printf("Carro %s chegou, mas estacionamento cheio. Indo embora.\n", placa);
+
+        if (operacao == '0') { // ENTRADA
+            if (pilha_cheia(&estacionamento)) {
+                printf("Carro %s chegou, mas estacionamento cheio. Indo embora.\n", placa_input);
             } else {
-                strcpy(estacionamento[topo].placa, placa); // placa copiada da struct
-                estacionamento[topo].manobras = 0; // Manobras zeradas
-                topo++; // Adiciona o carro
-                printf("Carro %s entrou no estacionamento.\n", placa);
+                strcpy(carro.placa, placa_input); // copia a placa
+                carro.manobras = 0;
+                push(*(int*)&carro, (t_pilha*)&estacionamento);
+                printf("Carro %s entrou no estacionamento.\n", placa_input);
             }
-        } else if (operacao == '1') { // SAIDA
-            int i, j;
-            int encontrado = 0; 
-            for (i = 0; i < topo; i++) { // Pesquisa a placa do carro e verifica 
-                if (strcmp(estacionamento[i].placa, placa) == 0) {
+        } else if (operacao == '1') { // SAÍDA
+            int encontrado = 0;
+            while (!pilha_vazia(&estacionamento)) { 
+                pop(&estacionamento, (int*)&carro_removido); 
+                if (strcmp(carro_removido.placa, placa_input) == 0) { // encontrou o carro
                     encontrado = 1;
                     break;
+                } else {
+                    carro_removido.manobras++; // incrementa manobras
+                    push(*(int*)&carro_removido, (t_pilha*)&aux);
                 }
             }
-            if (!encontrado) { // Placa do carro nao esta no array
-                printf("Carro %s não está no estacionamento.\n", placa);
-            } else { // Carro encontrado, codigo complexo a seguir
-                for (j = i + 1; j < topo; j++) {
-                    estacionamento[j].manobras++; // carro no array manobrado
-                }
-                printf("Carro %s saiu do estacionamento. Foi manobrado %d vezes.\n", estacionamento[i].placa, estacionamento[i].manobras); 
-                // Reorganiza o estacionamento (remove o carro)
-                for (j = i; j < topo - 1; j++) {
-                    estacionamento[j] = estacionamento[j + 1]; // move o carro para a esquerda
-                }
-                topo--; // remove o carro do topo
+
+            if (!encontrado) {
+                printf("Carro %s não está no estacionamento.\n", placa_input);
+                // devolve tudo como estava
+            } else {
+                printf("Carro %s saiu do estacionamento. Foi manobrado %d vezes.\n", carro_removido.placa, carro_removido.manobras);
             }
-        } else { // ERROR durante input
+
+            // devolve os carros do auxiliar para o estacionamento
+            while (!pilha_vazia(&aux)) {
+                pop(&aux, (int*)&carro_removido); // remove do auxiliar 
+                push(*(int*)&carro_removido, (t_pilha*)&estacionamento); // devolve para o estacionamento
+            }
+        } else {
             printf("Operação inválida. Use '0' para entrada ou '1' para saída.\n");
         }
     }
