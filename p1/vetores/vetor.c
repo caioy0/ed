@@ -46,22 +46,7 @@ int main(int argc, char **argv) {
 }
 */
 
-#include <stdio.h>
-#include <math.h>
-
-typedef struct {
-    float x, y;
-}ponto;
-
-typedef struct {
-    ponto c;
-    float raio;
-}circulo;
-
-typedef struct {
-    int numerador;
-    int denominador;
-} fracao;
+#include "vetor.h"
 
 float distancia(ponto p1, ponto p2){
     return sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
@@ -266,7 +251,7 @@ int main() {
                 printf("Digite o raio do círculo: ");
                 scanf("%f", &c.raio);
                 printf("Digite o ponto central: ");
-                scanf("%f", &c.ponto_central);
+                scanf("%f", &c.c);
                 printf("\nPontos do circulo \nRaio: %.2f \nPonto central : %.2f\n", c.raio, c.x, c.y);
                 float area = 3.14*(c.raio*c.raio);
                 if (p1.x || p1.y == area) {
