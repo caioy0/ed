@@ -2,7 +2,7 @@
 #include <time.h>
 
 int main(){
-    t_fila *fila = constroi_fila();
+    t_fila *fila = constroi_fila(fila);
     int a;
     srand(time(0));
     do{
@@ -23,8 +23,8 @@ int main(){
     enfileira(2, fila);
     enfileira(9, fila);
 
-    t_fila *pares = constroi_fila();
-    t_fila *impares = constroi_fila();
+    t_fila *pares = constroi_fila(pares);
+    t_fila *impares = constroi_fila(impares);
 
     separa_pares_impares(fila, pares, impares);
 
@@ -35,8 +35,8 @@ int main(){
     printf("\nFila de ímpares: ");
     mostra_fila(impares);
 
-    t_fila *f1 = constroi_fila();
-    t_fila *f2 = constroi_fila();
+    t_fila *f1 = constroi_fila(f1);
+    t_fila *f2 = constroi_fila(f2);
 
     enfileira(1, f1);
     enfileira(2, f1);

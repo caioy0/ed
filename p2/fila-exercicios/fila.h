@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include "no.h"
 
 typedef struct {
     int * dados;
     int primeiro, ultimo;
     int capacidade, ocupacao;
+    t_no * primeiro;
+    t_no * ultimo;
 } t_fila;
 
 t_fila * constroi_fila (int);

@@ -3,7 +3,7 @@
 void separar_impar_par(t_fila *fila, t_fila *pares, t_fila *impares) {
     int valor;
     int tamanho = 0;
-    t_fila *temp = constroi_fila();
+    t_fila *temp = constroi_fila(fila);
 
     while (desenfileira(&valor, fila)) {
         enfileira(valor, temp);
@@ -26,8 +26,8 @@ void separar_impar_par(t_fila *fila, t_fila *pares, t_fila *impares) {
 void move_menor_para_maior(t_fila *f1, t_fila *f2) {
     // Contar elementos
     int c1 = 0, c2 = 0, temp;
-    t_fila *tmp1 = constroi_fila();
-    t_fila *tmp2 = constroi_fila();
+    t_fila *tmp1 = constroi_fila(f1);
+    t_fila *tmp2 = constroi_fila(f2);
 
     // Contar f1
     while (desenfileira(&temp, f1)) {
