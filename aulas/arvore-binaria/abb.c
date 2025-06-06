@@ -17,15 +17,15 @@ void insere (int i, t_abb *abb){
 void insere_rec (t_no *novo, t_no *atual){ // ir para direita
     if (novo->info > atual->info){
         if (atual->dir == NULL) atual -> dir = novo;
-        else insere_rec(novo, atual->dir):
+        else insere_rec(novo, atual->dir);
     } else { // esquerda
         if (atual->esq == NULL) atual -> esq = novo;
         else insere_rec(novo, atual->esq);
     }
 }
 
-void imprime (t_abb *){
-    if (abb vazia (abb)) printf("arvore vazia\n");
+void imprime (t_abb *abb){
+    if (abb_vazia (abb)) printf("arvore vazia\n");
     else imprime_rec (abb->raiz);
 }
 

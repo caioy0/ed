@@ -25,8 +25,7 @@ int remove_inicio (t_lista *lista) {
     return temp;
 }
 void mostra_lista (t_lista * lista) {
-    if (lista_vazia(lista))
-        printf ("lista vazia\n");
+    if (lista_vazia(lista)) printf ("lista vazia\n");
     else {
         t_no * runner = lista->primeiro;
         while (runner != NULL) {

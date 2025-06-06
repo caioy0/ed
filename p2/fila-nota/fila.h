@@ -22,3 +22,4 @@ void exibe_primeiro (t_fila *);
 int devolve_primeiro (t_fila *);
 void exibe_ultimo (t_fila *);
 int devolve_ultimo (t_fila *);
+void limpa_fila (t_fila *);

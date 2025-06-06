@@ -2,8 +2,7 @@
 
 typedef struct no {
     int info;
-    struct no * esq;
-    struct no * dir;
+    struct no * prox;
 } t_no;
 
 t_no * constroi_no (int);

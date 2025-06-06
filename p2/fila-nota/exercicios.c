@@ -61,3 +61,20 @@ void move_menor_para_maior(t_fila *f1, t_fila *f2) {
     free(tmp1);
     free(tmp2);
 }
+
+// ex1 ex_filas
+void limpa_fila(t_fila *pf) {
+    if (fila_vazia(pf)) return 0;
+    t_fila *aux = constroi_fila(aux);
+    int valor;
+
+    while (desenfileira(&valor, pf)) {
+        if (valor % 2 != 0) enfileira(valor, aux); // impar
+    }
+
+    // Restaurar os elementos ímpares de volta à fila original
+    while (desenfileira(&valor, aux)) {
+        enfileira(valor, pf);
+    }
+    free(aux);
+}
