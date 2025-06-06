@@ -17,6 +17,9 @@ int fila_cheia (t_fila *fila){
 int fila_vazia (t_fila *fila){
     return fila->ocupacao == 0;
 }
+int proxima(int pos, int capacidade){
+    return (pos+1) % capacidade;
+}
 
 void exibir_fila (t_fila *fila){
     if (fila_vazia(fila)) printf("Fila vazia");
@@ -73,9 +76,6 @@ int desenfileira (int *i, t_fila *pf){
     return 1;
 }
 
-int proxima(int pos, int capacidade){
-    return (pos+1) % capacidade;
-}
 
 void mostra_vetor (t_fila *fila){
     if (fila_vazia(fila)){

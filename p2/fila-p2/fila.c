@@ -88,14 +88,29 @@ int fura_fila(int i, t_fila *fila) {
     return 1;
 }
 
-int limpa_fila (int *i, t_fila *fila){
-    if (fila_vazia(fila)) return 0;
-    for (int i2 =0; i2 < fila->ocupacao; i2++){
-        *i = fila->dados[fila->primeiro];
-        if (fila->dados[fila->primeiro] %2 == 0){
-            fila->primeiro = proxima(fila->primeiro, fila->capacidade);
-            fila->ocupacao--;
-        }
+// int limpa_fila (int *i, t_fila *fila){
+//     if (fila_vazia(fila)) return 0;
+//     for (int i2 =0; i2 < fila->ocupacao; i2++){
+//         *i = fila->dados[fila->primeiro];
+//         if (fila->dados[fila->primeiro] %2 == 0){
+//             fila->primeiro = proxima(fila->primeiro, fila->capacidade);
+//             fila->ocupacao--;
+//         }
+//     }
+//     return 1;
+// }
+
+void exibir_primeiro (t_fila *fila){
+    if (fila_vazia(fila)) printf("fila vazia\n");
+    else{
+        printf("Primeiro elemento: %d\n", fila->dados[fila->primeiro]);
     }
-    return 1;
+}
+void exibir_ultimo(t_fila *fila) {
+    if (fila_vazia(fila)) {
+        printf("fila vazia\n");
+    } else {
+        int i = anterior(fila->ultimo, fila->capacidade);
+        printf("Ultimo elemento: %d\n", fila->dados[i]);2
+    }
 }

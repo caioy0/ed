@@ -1,7 +1,7 @@
-#include "abb.c"
+#include "abb.h"
 #include <time.h>
 
-int main (){
+int main(){
     t_abb abb;
     inicia_abb(&abb);
     srand(time(0));

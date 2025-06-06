@@ -22,6 +22,8 @@ int main (){
 
     fura_fila(40, fila);
     exibir_fila(fila);
+    exibir_primeiro(fila);
+    exibir_ultimo(fila);
 
     int a;
     srand(time(0));
