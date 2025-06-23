@@ -12,7 +12,7 @@ int main (){
         printf("%d", n);
         insere (n, &abb);
     }
-    imprime (abb);
+    imprime (&abb);
     if (busca (10,&abb)) printf("10 esta na arvore");
     else printf ("10 nao esta na arvore");
     return 0;
