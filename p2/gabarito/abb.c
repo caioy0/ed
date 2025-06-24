@@ -1,4 +1,6 @@
 #include "abb.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void inicia_abb (t_abb *abb){
     abb->raiz = NULL;
@@ -29,10 +31,10 @@ void imprime (t_abb *abb){
     else imprime_rec (abb->raiz);
 }
 
-void imprime_rec (t_no * atual){
+void imprime_rec (t_no *atual){
     if (atual != NULL) {
-        imprime_rec(atual->esq);
-        printf("%d", atual->info);
+        imprime_rec(atual->esq); // Faz até que atual == NULL, quando isso acontece ele desempilha e começa a exibir as info de cada nó da arvore 
+        printf("%d ", atual->info);
         imprime_rec(atual->dir);
     }
 }
@@ -55,5 +57,10 @@ int conta_x (int x, t_abb *abb){
 int conta_x_rec (int x, t_no *atual){
     if (atual == NULL) return 0;
     int cont = conta_x_rec (x, atual->esq) + conta_x_rec (x, atual->dir);
-    return atual->info == x?cont+1:cont;
+    return atual->info == x ? cont+1 : cont;
+    // if (atual->info == x) {
+    //     return cont + 1;
+    // } else {
+    //     return cont;
+    // }
 }
