@@ -9,11 +9,12 @@ int main (){
     //printf("p_no = %p\n", p_no);
     //p_no -> info= 5;
     
-    p_no = constroi = controi_no(5);
-    printf("conteudo do no apontado por p_no: %n\n", p_no ->info);
-    no.prox = p_no;
+    p_no = controi_no(5);
+    printf("conteudo do no apontado por p_no: %n\n", p_no->info);
+    p_no->prox = p_no;
     p_no = &no1;
     p_no->info = 12;
     no1.prox->info = 20;
+    printf("conteudo do no apontado por p_no: %n\n", p_no->info);
     return 0;
 }

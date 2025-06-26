@@ -3,6 +3,7 @@
 void constroi_lista (t_lista *lista) {
     lista->primeiro = lista->ultimo = NULL;
 }
+
 int lista_vazia (t_lista *lista) {
     return !lista->primeiro;
 }
