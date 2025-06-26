@@ -7,7 +7,7 @@ typedef struct {
     int capacidade;
 } t_pilha;
 
-int constroi_pilha (int, t_pilha *);
+void constroi_pilha (int, t_pilha *);
 int pilha_vazia (t_pilha *);
 int pilha_cheia (t_pilha *);
 int push (int, t_pilha *);

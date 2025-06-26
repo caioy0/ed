@@ -1,6 +1,6 @@
 #include "pilha.h"
 
-int constroi_pilha (int capacidade, t_pilha *pilha){
+void constroi_pilha (int capacidade, t_pilha *pilha){
     pilha->dados = (int *) malloc (capacidade * sizeof(int));
     pilha->topo = 0;
     pilha->capacidade = capacidade;
