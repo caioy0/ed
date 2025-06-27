@@ -45,15 +45,14 @@ int remover_elementos(int n, t_pilha *pilha){
 }
 void inverter_pilha (t_pilha *pilha){
     if (pilha_vazia(pilha)) printf("Pilha vazia!\n");
-    t_pilha *invertida;
-    invertida = (t_pilha *) malloc(sizeof(t_pilha));
-    constroi_pilha(pilha->capacidade, invertida);
+    t_pilha invertida;
+    constroi_pilha(pilha->capacidade, &invertida);
     int aux;
     while (pop(pilha, &aux)){
-        push(aux, invertida);
+        push(aux, &invertida);
     }
     // atualizar os dados da pilha temp
-    pilha->dados = invertida->dados;
-    pilha->topo = invertida->topo;
-    mostra_pilha(invertida);
+    pilha->dados = invertida.dados;
+    pilha->topo = invertida.topo;
+    mostra_pilha(&invertida);
 }
