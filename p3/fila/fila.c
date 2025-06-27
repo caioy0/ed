@@ -21,7 +21,7 @@ t_fila *constroi_fila (int capacidade){
 }
 
 int fila_vazia (t_fila *fila){
-    return fila->ocupacao == 0;
+    return fila->ocupacao == 0; // !fila->ocupacao
 }
 
 int fila_cheia (t_fila *fila){
