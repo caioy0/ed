@@ -1,4 +1,6 @@
 #include "abb.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void inicia_abb (t_abb *abb){
     abb->raiz = NULL;

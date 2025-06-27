@@ -77,7 +77,8 @@ void mostra_vetor (t_fila *fila){
 
 int lanterninha(t_fila *fila, int *temp){
     if (fila_vazia(fila)) return 0;
-    if (fila->ultimo == 0) *temp = fila->dados[fila->capacidade-1];
-    else *temp = fila->dados[fila->ultimo-1];
+    if (fila->ultimo == 0) // Primeiro caso se o ultimo estiver no 0
+    *temp = fila->dados[fila->capacidade-1];
+    else *temp = fila->dados[fila->ultimo-1]; // nos demais index
     return 1;
 }

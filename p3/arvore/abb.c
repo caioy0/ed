@@ -1,0 +1,107 @@
+#include "abb.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void inicia_abb (t_abb *abb){
+    abb->raiz = NULL;
+}
+
+int abb_vazia (t_abb *abb){
+    return abb->raiz == NULL;
+}
+
+void insere (int i, t_abb *abb){
+    t_no * novo = constroi_no(i);
+    if (abb_vazia(abb)) abb->raiz = novo;
+    else insere_rec(novo, abb->raiz);
+}
+
+void insere_rec (t_no *novo, t_no *atual){ // ir para direita
+    if (novo->info > atual->info){
+        if (atual->dir == NULL) atual -> dir = novo;
+        else insere_rec(novo, atual->dir);
+    } else { // esquerda
+        if (atual->esq == NULL) atual -> esq = novo;
+        else insere_rec(novo, atual->esq);
+    }
+}
+
+void imprime (t_abb *abb){
+    if (abb_vazia (abb)) printf("arvore vazia\n");
+    else imprime_rec (abb->raiz);
+}
+
+void imprime_rec (t_no *atual){
+    if (atual != NULL) {
+        imprime_rec(atual->esq); // Faz até que atual == NULL, quando isso acontece ele desempilha e começa a exibir as info de cada nó da arvore 
+        printf("%d ", atual->info);
+        imprime_rec(atual->dir);
+    }
+}
+int busca (int x, t_abb *abb){
+    if (abb_vazia(abb)) return 0;
+    return busca_rec (x,abb->raiz);
+}
+
+int busca_rec (int x, t_no *atual){
+    if (atual == NULL) return 0;
+    if (atual->info ==x) return 1; //achou!
+    if (x > atual->info) return busca_rec(x, atual->dir);
+    return busca_rec (x,atual->esq);
+}
+
+int conta_x (int x, t_abb *abb){
+    if (abb_vazia(abb)) return 0;
+    return conta_x_rec(x, abb->raiz);
+}
+int conta_x_rec (int x, t_no *atual){
+    if (atual == NULL) return 0;
+    int cont = conta_x_rec (x, atual->esq) + conta_x_rec (x, atual->dir);
+    return atual->info == x ? cont+1 : cont;
+    // if (atual->info == x) {
+    //     return cont + 1;
+    // } else {
+    //     return cont;
+    // }
+}
+
+int remover_par(t_abb *abb){
+    if(abb_vazia(abb)) return 0;
+    abb->raiz = remover_par_rec(abb->raiz);
+    return 1; 
+}
+t_no* remover_par_rec(t_no *atual) {
+    if (atual == NULL) return NULL;
+    atual->esq = remover_par_rec(atual->esq);
+    atual->dir = remover_par_rec(atual->dir);
+    if (atual->info % 2 == 0) {
+        t_no *temp;
+        // Caso com zero ou um filho
+        if (atual->esq == NULL) {
+            temp = atual->dir;
+            free(atual);
+            return temp;
+        }
+        if (atual->dir == NULL) {
+            temp = atual->esq;
+            free(atual);
+            return temp;
+        }
+        // Caso com dois filhos — substitui pelo menor da subárvore direita
+        t_no *sucessor = atual->dir;
+        while (sucessor->esq != NULL) sucessor = sucessor->esq;
+        atual->info = sucessor->info;
+        atual->dir = remover_par_rec(atual->dir); // vai remover o duplicado
+    }
+    return atual;
+}
+
+int max_valor(t_abb *abb, int *i) {
+    if (abb_vazia(abb)) return 0;
+    t_no *atual = abb->raiz;
+    while (atual->dir != NULL) {
+        atual = atual->dir;
+    }
+    *i = atual->info;
+    return 1;
+}

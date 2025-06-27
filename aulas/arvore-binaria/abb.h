@@ -1,7 +1,7 @@
 #include "no.h"
 
 typedef struct{
-    int raiz;
+    int *raiz;
 } t_abb;
 
 void inicia_abb (t_abb *);
