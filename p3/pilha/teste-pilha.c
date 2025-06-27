@@ -14,7 +14,7 @@ int main (){
     push(40, &pilha);
     printf("\n%d foi desempilhado\n", temp);
     mostra_pilha(&pilha);
-
+    
     printf("Pilha invertida!\n");
     inverter_pilha(&pilha);
     
@@ -22,6 +22,12 @@ int main (){
     remover_elementos(cont, &pilha);
     printf("Foram desempilhados %d elementos\n", cont);
     mostra_pilha(&pilha);
-
+    
+    push(10, &pilha);
+    push(20, &pilha);
+    mostra_pilha(&pilha);
+    
+    fura_push(25, &pilha);
+    mostra_pilha(&pilha);
     return 0;
 }

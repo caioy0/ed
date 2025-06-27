@@ -54,15 +54,24 @@ int conta_x (int x, t_abb *abb){
     if (abb_vazia(abb)) return 0;
     return conta_x_rec(x, abb->raiz);
 }
-int conta_x_rec (int x, t_no *atual){
+// int conta_x_rec (int x, t_no *atual){
+//     if (atual == NULL) return 0;
+//     int cont = conta_x_rec (x, atual->esq) + conta_x_rec (x, atual->dir);
+//     return atual->info == x ? cont+1 : cont;
+//     // if (atual->info == x) {
+//     //     return cont + 1;
+//     // } else {
+//     //     return cont;
+//     // }
+// }
+
+int conta_x_rec (int x, t_no* atual){
     if (atual == NULL) return 0;
-    int cont = conta_x_rec (x, atual->esq) + conta_x_rec (x, atual->dir);
-    return atual->info == x ? cont+1 : cont;
-    // if (atual->info == x) {
-    //     return cont + 1;
-    // } else {
-    //     return cont;
-    // }
+    int cont = 0;
+    if (x == atual->info) cont ++;
+    if (x > atual->info) return conta_x(x, atual->dir);
+    else return conta_x(x, atual->esq);
+    return cont;
 }
 
 int remover_par(t_abb *abb){
@@ -98,10 +107,10 @@ t_no* remover_par_rec(t_no *atual) {
 
 int max_valor(t_abb *abb, int *i) {
     if (abb_vazia(abb)) return 0;
-    t_no *atual = abb->raiz;
-    while (atual->dir != NULL) {
-        atual = atual->dir;
+    t_no *atual = abb->raiz; // ponteiro do no atual comeca na raiz
+    while (atual->dir != NULL) { 
+        atual = atual->dir; // atual vai apontando sempre para a direita
     }
-    *i = atual->info;
+    *i = atual->info; // coloca/indexa a informacao no fim do loop
     return 1;
 }

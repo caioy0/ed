@@ -20,3 +20,4 @@ int lanterinha (t_fila *, int *);
 int exibir_primeiro(t_fila *, int *);
 int separar_fila(t_fila *);
 int juntar_filas (t_fila *, t_fila *);
+void inverter_fila(t_fila *);

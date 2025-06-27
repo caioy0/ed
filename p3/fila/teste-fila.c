@@ -24,6 +24,7 @@ int main(){
 
     mostrar_fila(fila);
     
+    // Furar a fila "Novo primeiro(head)"
     fura_fila(10, fila);
     mostrar_fila(fila);
     
@@ -31,37 +32,44 @@ int main(){
     printf("%d foi desenfilerado\n", temp);
     mostrar_fila(fila);
 
-    lanterinha(fila, &temp);
+    lanterinha(fila, &temp); // Mostrar quem o ultimo elemento
     printf("Ultimo elemento da fila: %d\n", temp);
     
-    exibir_primeiro(fila, &temp);
+    exibir_primeiro(fila, &temp); // Mostrar o primeiro elemento
     printf("Primeiro elemento da fila: %d\n", temp);
 
     enfileira(1, fila);
-
+    
     separar_fila(fila);
-
-    t_fila *f1 = constroi_fila(10);
-    t_fila *f2 = constroi_fila(10);
-    enfileira(1,f1);
-    enfileira(2,f1);
-    enfileira(3,f1);
-    printf("INICIO F1: \n");
-    mostrar_fila(f1);
+    enfileira(10, fila);
+    enfileira(20, fila);
+    enfileira(30, fila);
+    enfileira(40, fila);
+    mostrar_fila(fila);
+    inverter_fila(fila);
+    mostrar_fila(fila);
     
-    enfileira(20,f2);
-    enfileira(12,f2);
-    enfileira(22,f2);
-    enfileira(30,f2);
-    printf("INICIO F2: \n");
-    mostrar_fila(f2);
+    // t_fila *f1 = constroi_fila(10);
+    // t_fila *f2 = constroi_fila(10);
+    // enfileira(1,f1);
+    // enfileira(2,f1);
+    // enfileira(3,f1);
+    // printf("INICIO F1: \n");
+    // mostrar_fila(f1);
     
-    juntar_filas(f1,f2);
-    printf("FINAL F1: \n");
-    mostrar_fila(f1);
+    // enfileira(20,f2);
+    // enfileira(12,f2);
+    // enfileira(22,f2);
+    // enfileira(30,f2);
+    // printf("INICIO F2: \n");
+    // mostrar_fila(f2);
+    
+    // juntar_filas(f1,f2);
+    // printf("FINAL F1: \n");
+    // mostrar_fila(f1);
 
-    printf("FINAL F2: \n");
-    mostrar_fila(f2);
+    // printf("FINAL F2: \n");
+    // mostrar_fila(f2);
 
     return 0;
 }

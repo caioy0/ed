@@ -15,3 +15,4 @@ int pop (t_pilha *, int *);
 void mostra_pilha (t_pilha *);
 int remover_elementos(int, t_pilha *);
 void inverter_pilha (t_pilha *);
+int fura_push (int ,t_pilha *);

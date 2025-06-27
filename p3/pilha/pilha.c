@@ -37,7 +37,7 @@ int remover_elementos(int n, t_pilha *pilha){
     int temp;
     int removidos = 0;
 
-    while (n-- > 0 && !pilha_vazia(pilha)) {
+    for (int i = 0; i < n && !pilha_vazia(pilha); i++) {
         pop(pilha, &temp);
         removidos++;
     }
@@ -55,4 +55,24 @@ void inverter_pilha (t_pilha *pilha){
     pilha->dados = invertida.dados;
     pilha->topo = invertida.topo;
     mostra_pilha(&invertida);
+}
+
+int fura_push (int i,t_pilha *pilha){
+    if(pilha_cheia(pilha)) return 0;
+    t_pilha tp;
+    int temp;
+    constroi_pilha(pilha->capacidade, &tp);
+    int qtd = pilha->topo / 2; // Posição do meio (aproximadamente)
+    int valor;
+    // Move metade do topo para a pilha temporária
+    for (int j = 0; j < qtd; j++) {
+        if (pop(pilha, &valor)) push(valor, &tp);
+    }
+    push(i, pilha); // Elemento novo
+    // Reinsere os elementos de volta na pilha original
+    while (!pilha_vazia(&tp)) { 
+        pop(&tp, &valor);
+        push(valor, pilha);
+    }
+    return 1;
 }

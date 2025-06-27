@@ -23,10 +23,10 @@ int main (){
     contador = conta_x(num, &abb);  // x precisa ser um valor válido
     printf("O valor %d aparece %d vez na arvore\n", num, contador);
 
-    remover_par(&abb);
-    imprime(&abb);
-    int temp;
-    max_valor(&abb, &temp);
-    printf("\nO maior valor da arvore: %d", temp);
+    // remover_par(&abb);
+    // imprime(&abb);
+    // int temp;
+    // max_valor(&abb, &temp);
+    // printf("\nO maior valor da arvore: %d", temp);
     return 0;
 }

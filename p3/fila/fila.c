@@ -74,11 +74,12 @@ int lanterinha (t_fila *fila, int *i){
     // Se o próximo índice de inserção for 0, 
     // o último elemento inserido está no final do vetor
     // Pega o último elemento válido (posição circular anterior ao índice 0)
-    else *i = fila->dados[fila->ultimo-1]; 
+    
     // Caso normal: o último inserido está em ultimo - 1
+    else *i = fila->dados[fila->ultimo-1]; 
 
     // Ou seja, existem dois casos para acessar corretamente 
-    //o último elemento inserido:
+    // o último elemento inserido:
     
     // Caso 1: se o índice 'ultimo' for 0, 
     // significa que o último elemento foi inserido 
@@ -152,6 +153,31 @@ int juntar_filas(t_fila *f1, t_fila *f2) {
         }
     }
     return 1;
+}
+
+void inverter_fila(t_fila *fila) {
+    if (fila_vazia(fila)) return;
+
+    t_fila *aux1 = constroi_fila(fila->capacidade);
+    t_fila *aux2 = constroi_fila(fila->capacidade);
+    int valor;
+
+    while (!fila_vazia(fila)) {
+        desenfileira(fila, &valor);
+        // Inserir o novo valor na fila vazia aux1
+        enfileira(valor, aux1);
+        // Mover tudo de volta de aux2 para aux1
+        while (!fila_vazia(aux2)) {
+            int temp;
+            desenfileira(aux2, &temp);
+            enfileira(temp, aux1);
+        }
+    }
+    // Copiar elementos invertidos de aux1 para fila original
+    while (!fila_vazia(aux1)) {
+        desenfileira(aux1, &valor);
+        enfileira(valor, fila);
+    }
 }
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
